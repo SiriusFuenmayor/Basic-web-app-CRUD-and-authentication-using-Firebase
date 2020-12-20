@@ -1,0 +1,25 @@
+.gold_yellow {
+  background-color: #ffe600;
+  /* transform: rotate(5deg); */
+}
+
+.light_orange {
+  background-color: #ffc525;
+  /* transform: rotate(-4deg); */
+}
+
+.cardenal {
+  background-color: #ee2424;
+  /* transform: rotate(3deg); */
+}
+
+.coral {
+  background-color: coral;
+  /* transform: rotate(-4deg); */
+}
+
+.red {
+  background-color: #f74020;
+  /* transform: rotate(3deg); */
+}
+

@@ -1,0 +1,195 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+/**********************************************************
+* Flexbox que controla el layout del listado central
+**********************************************************/
+
+/* 
+  Esta clase define al flexbox del contenedor principal  
+  del listado central
+*/
+.container-main-listing {
+  width: 100%;
+  display: flex;  
+  flex-wrap: wrap;
+  margin-left: 15px;
+}
+
+/* 
+  Esta clase a cada item dentro del flexbox del listado
+  central
+*/
+.box-main-listing {
+  min-width: 275px;
+  height: 150px;
+  margin: 1px;
+}
+
+/*
+  Como cuando el viewport es menor de 500 pixeles no se
+  muestra la gaveta o sidebar y cuando se amplie el 
+  viewport desde los 250px que es el tamano minimo 
+  de las cajas hasta los 500px en se despliega la 
+  gaveta o sidebar quedara un espacio cada vez mayor 
+  alrededor de las cajas y el margen derecho hasta que  
+  se alcancen los 500px. Por esto ponemos un media query
+  para centrar la columna de cajas cuando el viewport es 
+  menor de 500 pixeles.
+
+  Nota que el breakpoint para centrar las cajas no es
+  solo hasta 500px sino hasta 725px porque queremos 
+  centrar las cajas tambien cuando esta desplegada la
+  gaveta hasta el momento que pasamos de una columna 
+  de cajas hasta dos columnas de cajas.
+*/
+@media only screen and (max-width : 725px) {
+  .container-main-listing {
+    width: 100%;
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/**********************************************************
+* Flexbox que controla el navbar o barra superior
+**********************************************************/
+
+.container-navbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #CFD8DC;
+  padding: 5px;
+  box-shadow: 0 2px 4px 0 rgba(172, 172, 172, 0.2), 0 3px 6px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hamb-icon-box {
+  width: 35px;
+  margin-top: 4px;
+  margin-right: 3px;
+}
+
+.logo-box {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -3px;
+  display: block;
+}
+
+.long-logo-box {
+  margin-left: auto;
+  margin-right: 15px;
+  margin-top: -3px;  
+  display: none;
+}
+
+.user-avatar-box {
+  width: 40px;
+  align-items: flex-end;  
+  margin-right: 20px;
+}
+
+/**********************************************************
+* Flexbox que controla los controles (menus select) de 
+* filtrado
+**********************************************************/
+
+.container-search-filters {
+  display: flex;  
+  flex-wrap: wrap;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.box-search-filters {
+  min-width: 250px;
+  margin-top: 1em;  
+}
+
+/**********************************************************
+* Gaveta
+**********************************************************/
+
+/* 
+  Drawer using off-canvas layout 
+
+  Take a look at the CSS below, which handles the nav menu's 
+  transition from hidden to visible. This open class is going 
+  to be applied on click, which means when the user clicks on 
+  the hamburger menu, this class will be applied.
+
+  Since we're mobile-first, by default, the drawer is hidden. 
+*/
+nav {
+  width: 250px;
+  height: 100%;
+  position: absolute;
+  /* This trasform moves the drawer off canvas. */
+  -webkit-transform: translate(-250px, 0px);
+  transform: translate(-250px, 0px);
+  /* Optionally, we animate the drawer. */
+  transition: transform 0.3s ease;
+}
+nav.open {
+  -webkit-transform: translate(0, 0px);
+  transform: translate(0, 0px);
+}
+
+/*
+  Media queries para hacer que la gaveta esta cerrada por defecto
+  para anchos menores a 500px.
+  If there is enough space (> 500px), we keep the drawer open all 
+  the time.
+*/
+@media screen and (min-width: 500px) {
+
+  /* We open the drawer. */
+  nav {
+    min-width: 250px;
+    position:relative;
+    -webkit-transform: translate(0, 0px);
+    transform: translate(0, 0px);
+  }
+
+  /* We use Flexbox on the parent. */
+  body {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+  }
+
+  main {
+    width: auto;
+    /* Flex-grow streches the main content to fill all available space. */
+    flex-grow: 1;
+  }
+
+  /*
+    Para esconder el icono del menu hamburguesa cuando la gaveta
+    esta desplegada.
+  */
+  .hamb-icon-box {
+    display: none;
+  }
+
+  .logo-box {
+    display: none;
+  }
+
+  .filter_icon {
+    display: none;
+  }
+  .long-logo-box {
+    display: block;
+  }
+
+  .search-input {
+    width: 90%;
+  }
+
+
+}
+
+

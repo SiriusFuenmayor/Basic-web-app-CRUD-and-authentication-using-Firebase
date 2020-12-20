@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout flexbox con gaveta</title>
+    <link rel="stylesheet" type="text/css" href="./styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="./styles/colors.css">
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="./styles/svgicons.css">
+    <!-- Font awesome icons -->
+    <script src="https://kit.fontawesome.com/3c26affd32.js" crossorigin="anonymous"></script>  
+  </head>
+
+  <body>
+
+    <!-- Sidebar or drawer-->
+    <nav id="drawer" class="drawer">
+      <a id="user-menu">
+        <img src="./assets/user-avatar.png" alt="User picture" class="user-avatar">
+      </a>
+      <h3 style="color:white;">Sirius Fuenmayor</h3>
+      <p style="color:white;"> <b>Some entry</b> </p>
+      <p style="color:white;"> <b>Another entry</b> </p>
+    </nav>
+
+    <main>
+
+      <!-- Navbar o barra superior -->
+      <div class="container-navbar">
+        <!-- Icono del menu hamburguesa --> 
+        <div class="hamb-icon-box">
+          <a id="menu">
+            <span style="font-size:30px;color:rgb(0, 0, 0);padding:8px;">
+              <i class="fas fa-bars"></i>
+            </span>
+          </a>
+        </div>
+        <!-- Barra de busqueda -->
+        <input 
+          type="text" 
+          id="search-box" 
+          class="search-input"
+          placeholder=" &#xF002;   Search for items..."
+          style="font-family:Arial, FontAwesome; font-size:14px;"
+        >          
+        <!-- Logo --> 
+        <div class="logo-box">
+          <img src="./assets/firebase-logo.png" alt="logo" height="40px" style="margin-top:3px;margin-bottom:-1px;">
+        </div>
+        <!-- Long logo --> 
+        <div class="long-logo-box">
+          <img src="./assets/firebase-long-logo.png" alt="logo" height="40px" style="margin-top:4px;margin-bottom:-3px;">
+        </div>           
+      </div>
+     
+      <!-- filtros de busqueda -->
+      <div class="container-search-filters"> <!-- DEFINIR ESTA CLASE COMO UN FLEXBOX-->
+        <div class="box-search-filters">
+          <label for="sort-by" style="font-size:14px;">Ordenar por:</label>
+          <select name="sort-by" id="sort-by" class="select">
+            <option value="precio-mas-bajo">Precio mas bajo</option>
+            <option value="precio-mas-alto">Precio mas alto</option>
+            <option value="relevantes">Mas relevantes</option>
+          </select>
+        </div>
+        <div class="box-search-filters">
+          <label for="price-range" style="font-size:14px;">Rango de precio:</label>
+          <select name="price-range" id="price-range" class="select">
+            <option value="1-10">1-10</option>
+            <option value="11-20">11-20</option>
+            <option value="21-30">21-30</option>
+          </select>
+        </div>
+      </div>      
+
+      <h3 style="margin-left:15px;">Popular</h3>
+      
+      <!-- Listado central -->
+      <div class="container-main-listing">
+        <div class="box-main-listing gold_yellow">
+          <div style="background-color:white;width:250px;"></div>
+        </div>
+        <div class="box-main-listing light_orange"></div>
+        <div class="box-main-listing cardenal"></div>
+        <div class="box-main-listing coral"></div>
+        <div class="box-main-listing red"></div>
+      </div>
+    </main>
+
+    <script>
+      /*
+       * Open the drawer when the menu ison is clicked.
+       */
+      var menu = document.querySelector('#menu');
+      var main = document.querySelector('main');
+      var drawer = document.querySelector('#drawer');
+
+      menu.addEventListener('click', function(e) {
+        drawer.classList.toggle('open');
+        e.stopPropagation();
+      });
+      main.addEventListener('click', function() {
+        drawer.classList.remove('open');
+      });
+
+    </script>
+
+  </body>
+
+</html>
