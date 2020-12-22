@@ -1,6 +1,25 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
 /**********************************************************
+* Layout de loa formularios de login: no queremos usar 
+* flexbox aca, no queremos que el layout cambie dinamicamente
+* o que los items se plieguen.
+**********************************************************/
+
+.centered-content {
+  margin:auto;
+  text-align:center;
+  width:300px;
+}
+
+.user-details {
+  margin:auto;
+  text-align:center;
+  padding:30px;
+  width:400px;
+} 
+
+/**********************************************************
 * Flexbox que controla el layout del listado central
 **********************************************************/
 
@@ -23,6 +42,7 @@
   min-width: 275px;
   height: 150px;
   margin: 1px;
+  border-radius:8px;
 }
 
 /*
@@ -61,7 +81,6 @@
   justify-content: flex-start;
   background-color: #CFD8DC;
   padding: 5px;
-  box-shadow: 0 2px 4px 0 rgba(172, 172, 172, 0.2), 0 3px 6px 0 rgba(0, 0, 0, 0.19);
 }
 
 .hamb-icon-box {

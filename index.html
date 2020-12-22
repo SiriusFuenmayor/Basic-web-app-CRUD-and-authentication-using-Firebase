@@ -1,112 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+  Copyright (c) 2016 Google Inc.
 
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout flexbox con gaveta</title>
-    <link rel="stylesheet" type="text/css" href="./styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="./styles/colors.css">
-    <link rel="stylesheet" type="text/css" href="./styles/styles.css">
-    <link rel="stylesheet" type="text/css" href="./styles/svgicons.css">
-    <!-- Font awesome icons -->
-    <script src="https://kit.fontawesome.com/3c26affd32.js" crossorigin="anonymous"></script>  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<html>
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome screen</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../styles/layout.css">
+  <link rel="stylesheet" type="text/css" href="../styles/colors.css">
+  <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <!-- Font awesome icons -->
+  <script src="https://kit.fontawesome.com/3c26affd32.js" crossorigin="anonymous"></script>
+  <!-- Import and configure the Firebase SDK -->
+  <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+  <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+  <script src="/__/firebase/8.1.1/firebase-app.js"></script>
+  <script src="/__/firebase/8.1.1/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
   </head>
+<body>
 
-  <body>
+  <main class="centered-content">
+    <img 
+      style="margin:auto;"
+      src="firebase-logo.png" 
+      alt="firebase-logo"
+    >
+    <br/><br/>     
+    <p id="welcome-message">
+      Please wait...
+    </p>
+  </main>
 
-    <!-- Sidebar or drawer-->
-    <nav id="drawer" class="drawer">
-      <a id="user-menu">
-        <img src="./assets/user-avatar.png" alt="User picture" class="user-avatar">
-      </a>
-      <h3 style="color:white;">Sirius Fuenmayor</h3>
-      <p style="color:white;"> <b>Some entry</b> </p>
-      <p style="color:white;"> <b>Another entry</b> </p>
-    </nav>
+  <script type="text/javascript">
 
-    <main>
+    /* 
+      IMPORTANTE: PERSISTENCIA DEL USUARIO EN FIREBASE
 
-      <!-- Navbar o barra superior -->
-      <div class="container-navbar">
-        <!-- Icono del menu hamburguesa --> 
-        <div class="hamb-icon-box">
-          <a id="menu">
-            <span style="font-size:30px;color:rgb(0, 0, 0);padding:8px;">
-              <i class="fas fa-bars"></i>
-            </span>
-          </a>
-        </div>
-        <!-- Barra de busqueda -->
-        <input 
-          type="text" 
-          id="search-box" 
-          class="search-input"
-          placeholder=" &#xF002;   Search for items..."
-          style="font-family:Arial, FontAwesome; font-size:14px;"
-        >          
-        <!-- Logo --> 
-        <div class="logo-box">
-          <img src="./assets/firebase-logo.png" alt="logo" height="40px" style="margin-top:3px;margin-bottom:-1px;">
-        </div>
-        <!-- Long logo --> 
-        <div class="long-logo-box">
-          <img src="./assets/firebase-long-logo.png" alt="logo" height="40px" style="margin-top:4px;margin-bottom:-3px;">
-        </div>           
-      </div>
-     
-      <!-- filtros de busqueda -->
-      <div class="container-search-filters"> <!-- DEFINIR ESTA CLASE COMO UN FLEXBOX-->
-        <div class="box-search-filters">
-          <label for="sort-by" style="font-size:14px;">Ordenar por:</label>
-          <select name="sort-by" id="sort-by" class="select">
-            <option value="precio-mas-bajo">Precio mas bajo</option>
-            <option value="precio-mas-alto">Precio mas alto</option>
-            <option value="relevantes">Mas relevantes</option>
-          </select>
-        </div>
-        <div class="box-search-filters">
-          <label for="price-range" style="font-size:14px;">Rango de precio:</label>
-          <select name="price-range" id="price-range" class="select">
-            <option value="1-10">1-10</option>
-            <option value="11-20">11-20</option>
-            <option value="21-30">21-30</option>
-          </select>
-        </div>
-      </div>      
+      Recordemos que toda la informacion del usuario y de la autenticacion 
+      se guarda en los objetos user y auth. Firebase guardara por defecto
+      los objetos "user" y "auth" en Window.localStorage y se podran acceder 
+      directamente para comprobar si hay un usuario autenticado ya en la app 
+      en cualquier momento luego del registro inicial. Asi que podemos iniciar
+      comprobando si hay un objeto 'auth' y 'user' para este dominio y en
+      base a esto dirigir al usuario a las paginas de login o a las paginas
+      privadas.
 
-      <h3 style="margin-left:15px;">Popular</h3>
+      "You can specify how the Authentication state persists when using the 
+      Firebase JS SDK. This includes the ability to specify whether a signed 
+      in user should be indefinitely persisted until explicit sign out, cleared 
+      when the window is closed or cleared on page reload."
+
+      "For a web application, the default behavior is to persist a user's session 
+      even after the user closes the browser. This is convenient as the user is 
+      not required to continuously sign-in every time the web page is visited 
+      on the same device." 
       
-      <!-- Listado central -->
-      <div class="container-main-listing">
-        <div class="box-main-listing gold_yellow">
-          <div style="background-color:white;width:250px;"></div>
-        </div>
-        <div class="box-main-listing light_orange"></div>
-        <div class="box-main-listing cardenal"></div>
-        <div class="box-main-listing coral"></div>
-        <div class="box-main-listing red"></div>
-      </div>
-    </main>
+      asi que: "the state will be persisted even when the browser window is 
+      closed... An explicit sign out is needed to clear that state." 
 
-    <script>
-      /*
-       * Open the drawer when the menu ison is clicked.
-       */
-      var menu = document.querySelector('#menu');
-      var main = document.querySelector('main');
-      var drawer = document.querySelector('#drawer');
+      (Si te estas preguntando como la app sabe que el objeto user es el de
+      tu app de firebase y no el de otra aplicacion recuerda que en localStorage 
+      cada objeto se asocia a un dominio.)
 
-      menu.addEventListener('click', function(e) {
-        drawer.classList.toggle('open');
-        e.stopPropagation();
-      });
-      main.addEventListener('click', function() {
-        drawer.classList.remove('open');
-      });
+      Leer la informacion en la siguiente pagina de Firebase para entender
+      todo:
 
-    </script>
+      https://firebase.google.com/docs/auth/web/auth-state-persistence
 
-  </body>
+    */    
 
+    function initApp() {
+      // si el usuario esta registrado...
+      firebase.auth().onAuthStateChanged(function(user) {
+      if (user != null) {
+        // Si hubo registro con el proveedor Google redirigimos automaticamente
+        if (user.providerData.providerId == 'google.com' && user.providerData.uid != null) {
+          window.location.replace("/private/index.html");          
+        }
+        // Si hubo registro con email y password comprobamos primero si el 
+        // email ha sido verificado, si no a sido ...
+        if (!user.emailVerified) {
+          // mostrar mensaje pidiendo terminar registro
+          document.getElementById("welcome-message").innerHTML="Please close this window and follow the link we sent to your email...";
+        }
+        // si el email ha sido verificado redirigir a paginas privadas
+        if (user.emailVerified) {
+          window.location.replace("/private/index.html");
+          // replace() removes the URL of the current document from the document history,
+          // meaning that it is not possible to use the "back" button to navigate back  
+          // to the original document.      
+        }
+      // Si no hay usuario registrado redirigir a pagina con opciones para registro
+      } else {
+        console.log("Redirecting");
+        window.location.replace("/login/index.html");    
+      }
+    })};
+
+    window.onload = function() {
+      initApp();
+    };
+
+  </script>  
+
+</body>
 </html>

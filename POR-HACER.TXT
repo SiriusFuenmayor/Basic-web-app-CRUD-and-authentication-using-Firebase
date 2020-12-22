@@ -1,0 +1,1 @@
+Arreglar mensajes alert para cada caso.

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2019 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentication Options</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../styles/layout.css">
+  <link rel="stylesheet" type="text/css" href="../styles/colors.css">
+  <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <!-- Font awesome icons -->
+  <script src="https://kit.fontawesome.com/3c26affd32.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Header section containing title -->
+  <header class="header">
+    <img src="../assets/firebase-long-logo.png" alt="firebase-logo" width="200px">
+  </header>
+
+  <br/>
+
+  <div class="centered-content">    
+    <p style="color:rgb(255, 72, 0);font-weight:400;text-align:center;">
+      There are multiple methods available for <br/>
+      authentication with Firebase. Ensure that the <br/> 
+      appropriate sign-in method has been enabled <br/> 
+      in the Firebase Console authentication panel. <br/> 
+      Note: custom auth does not require enabling. 
+    </p>
+    <br><br>
+    <div style="background-color:rgb(255, 221, 71);padding:15px;border-radius:8px;width:200px;margin:auto;">
+      <a href="sign-in-email-password.html" style="color:#000000;text-decoration:none;">
+        Sign-in with e-mail
+      </a>
+    </div>
+    <br>
+    <!-- Google sign-in using Redirect -->
+    <div style="background-color:tomato;padding:15px;border-radius:8px;width:200px;margin:auto;">
+      <a href="google-redirect.html" style="color:#000000;text-decoration:none;">
+        Sign-in with Google
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

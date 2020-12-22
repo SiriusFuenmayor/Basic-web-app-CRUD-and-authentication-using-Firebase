@@ -6,12 +6,18 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: sans-serif;
+  font-size: 12px;
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
   background-color:rgb(255, 255, 255);
+}
+
+header {
+  margin: auto;
+  text-align:center;
 }
 
 nav {
@@ -31,6 +37,31 @@ a#menu svg {
   margin-top: 5px;
 }
 
+button {
+  padding:15px;
+  border-radius:8px;
+  border: none;
+  width:200px;
+  margin:auto;
+  background-color: #ffd900;
+}
+
+input[type=text],
+input[type=url],
+input[type=tel],
+input[type=number],
+input[type=password],
+input[type=email] {
+  background-color: rgb(231, 231, 231);
+  padding: 12px;
+  margin-left: 7px;
+  margin-right: 5px;
+  width: 85%;
+  border: none;
+  outline: none;
+  border-radius:8px;
+}
+
 .title {
   font-size: 2.5em;
   text-align: center;
@@ -38,12 +69,6 @@ a#menu svg {
 
 .search-input {
   background-color: rgb(255, 255, 255);
-  padding: 12px;
-  margin-left: 7px;
-  margin-right: 5px;
-  width: 85%;
-  border: none;
-  outline: none;
 }
 
 .user-avatar {
@@ -51,6 +76,11 @@ a#menu svg {
   height:40px;
   margin-top: 1px;
   border-radius: 50%;  
+}
+
+.pseudolink { 
+  color:blue; 
+  cursor:pointer; 
 }
 
 .select {
