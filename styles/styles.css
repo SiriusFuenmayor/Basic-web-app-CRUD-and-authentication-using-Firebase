@@ -29,6 +29,7 @@ main {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  background-color:whitesmoke;
 }
 
 a#menu svg {
@@ -52,7 +53,7 @@ input[type=tel],
 input[type=number],
 input[type=password],
 input[type=email] {
-  background-color: rgb(231, 231, 231);
+  background-color: whitesmoke;
   padding: 12px;
   margin-left: 7px;
   margin-right: 5px;
@@ -60,15 +61,12 @@ input[type=email] {
   border: none;
   outline: none;
   border-radius:8px;
+  
 }
 
 .title {
   font-size: 2.5em;
   text-align: center;
-}
-
-.search-input {
-  background-color: rgb(255, 255, 255);
 }
 
 .user-avatar {
@@ -96,6 +94,5 @@ input[type=email] {
 }
 
 .drawer {
-  background-color:#CFD8DC;
-  box-shadow: 0 4px 8px 0 rgba(172, 172, 172, 0.2), 0 3px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color:tomato;
 }
