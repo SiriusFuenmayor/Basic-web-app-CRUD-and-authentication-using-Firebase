@@ -29,7 +29,7 @@ main {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  background-color:whitesmoke;
+  background-color:white;
 }
 
 a#menu svg {
@@ -61,7 +61,21 @@ input[type=email] {
   border: none;
   outline: none;
   border-radius:8px;
-  
+}
+
+/* 
+  Color del texto placeholder en el text input de 
+  busqueda: se necesita especificarlo de manera 
+  diferente para cada explorador
+*/
+#search-input::-webkit-input-placeholder { /* Edge */
+  color: rgb(0, 0, 0);
+}
+#search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgb(0, 0, 0);
+}
+#search-input::placeholder {
+  color: rgb(0, 0, 0);
 }
 
 .title {
@@ -90,9 +104,10 @@ input[type=email] {
   margin-right: 30px;
   font: inherit;
   font-size: 14px;
-  outline: none;
+  border: 1px solid salmon;
+  border-radius: 8px;
 }
 
 .drawer {
-  background-color:tomato;
+  background-color: salmon;
 }

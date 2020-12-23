@@ -79,9 +79,10 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  background-color: #ffffff;
+  background-color:rgb(255, 255, 255);
+  border: 1px solid salmon;
   padding: 5px;
-}
+}  
 
 .hamb-icon-box {
   width: 35px;
@@ -124,18 +125,6 @@
 .box-search-filters {
   min-width: 250px;
   margin-top: 1em;  
-}
-
-#search-input::-webkit-input-placeholder { /* Edge */
-  color: white;
-}
-
-#search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: white;
-}
-
-#search-input::placeholder {
-  color: white;
 }
 
 /**********************************************************
@@ -219,7 +208,6 @@ nav.open {
   .search-input {
     width: 90%;
   }
-
 
 }
 
