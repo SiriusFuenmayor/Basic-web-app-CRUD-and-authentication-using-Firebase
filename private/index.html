@@ -117,6 +117,12 @@ limitations under the License.
             var isAnonymous = user.isAnonymous;
             var uid = user.uid;
             var providerData = user.providerData;
+            // Se llena el <p> con el nombre del usuario
+            document.getElementById('user-name').textContent = displayName;
+            // Se actualiza el url de su imagen
+            document.getElementById("user-image").src = photoURL;
+            // Se llena el <p> con su correo
+            document.getElementById("user-email").textContent = email;
             // Se llena el span con estado de la autenticacion
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
             // Se llena el pre con la informacion del usuario 
@@ -146,10 +152,26 @@ limitations under the License.
 
     <!-- Sidebar or drawer-->
     <nav id="drawer" class="drawer">
-      <a id="user-menu">
-        <img src="../assets/user-avatar.png" alt="User picture" class="user-avatar">
+      <a href="user-profile.html">
+        <img 
+          id="user-image"
+          src="../assets/user-avatar.svg" 
+          alt="User picture" 
+          class="user-avatar"
+        >
       </a>
-      <p style="color:white;font-size:medium;margin-top:15px;margin-bottom:15px;">Sirius Fuenmayor</p>
+      <a href="user-profile.html">
+        <p 
+          id="user-name"
+          style="color:white;font-size:medium;margin-top:15px;margin-bottom:15px;">
+        </p>
+      </a>
+      <a href="user-profile.html">
+        <p 
+          id="user-email"
+          style="color:white;font-size:10px;margin-top:15px;margin-bottom:15px;">
+        </p>
+      </a>
       <button id="sign-out" 
               name="signout" 
               style="background-color:#ffffff;padding:8px;margin-left:auto;margin-right:auto;"
@@ -174,19 +196,17 @@ limitations under the License.
       <!-- Navbar o barra superior -->
       <div class="container-navbar">
         <!-- Icono del menu hamburguesa --> 
-        <div class="hamb-icon-box">
-          <a id="menu">
-            <span style="font-size:30px;color:rgb(0, 0, 0);padding:8px;">
-              <i class="fas fa-bars"></i>
-            </span>
-          </a>
+        <div class="hamb-icon-box" id="menu">
+          <span style="font-size:30px;color:black;padding:8px;">
+            <i class="fas fa-bars"></i>
+          </span>
         </div>
         <!-- Barra de busqueda -->
         <input 
           type="text" 
           id="search-input"
           placeholder=" &#xF002;   Search for items..."
-          style="font-family:Arial,FontAwesome;color:tomato;background-color:white;border: 1px solid tomato;"
+          style="font-family:Arial,FontAwesome;background-color:white;border: 1px solid tomato;"
         >          
         <!-- Logo --> 
         <div class="logo-box">
@@ -234,13 +254,6 @@ limitations under the License.
         <div class="box-main-listing coral"></div>
         <div class="box-main-listing red"></div>
       </div>
-      <div id="user-details" class="user-details">
-        Firebase sign-in status: 
-        <span id="quickstart-sign-in-status">Unknown</span>
-        <br/><br/>
-        <div>Firebase auth <code>currentUser</code> object value:</div>
-        <pre><code id="quickstart-account-details">null</code></pre>
-      </div> 
     </main>
          
     <script>

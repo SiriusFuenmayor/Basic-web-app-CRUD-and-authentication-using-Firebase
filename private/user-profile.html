@@ -15,150 +15,219 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <html>
-<head>
-  <meta charset=utf-8 />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Private route</title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private route</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="../styles/colors.css">
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Font awesome icons -->
+    <script src="https://kit.fontawesome.com/3c26affd32.js" crossorigin="anonymous"></script>  
+    <!-- Import and configure the Firebase SDK -->
+    <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+    <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+    <script src="/__/firebase/8.1.1/firebase-app.js"></script>
+    <script src="/__/firebase/8.1.1/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <!-- Script principal de la aplicacion -->
+    <script type="text/javascript">
 
-  <!-- Google fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <!-- Google material icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+      /*
+        How Firebase Authentication work:
+
+        To sign a user into your app, you first get authentication credentials from the 
+        user. These credentials can be the user's email address and password, or an OAuth 
+        token from a federated identity provider. Then, you pass these credentials to the 
+        Firebase Authentication SDK. Our backend services will then verify those credentials 
+        and return a response to the client.  
+
+        After a successful sign in, you can access the user's basic profile information, 
+        and you can control the user's access to data stored in other Firebase products. 
+        You can also use the provided authentication token to verify the identity of users 
+        in your own backend services.
+
+        Note: By default, authenticated users can read and write data to the Firebase Realtime 
+        Database and Cloud Storage. You can control the access of those users by modifying your 
+        Firebase Realtime Database and Cloud Storage Security Rules.
+      */
+
+      /* 
+        IMPORTANTE: PERSISTENCIA DEL USUARIO EN FIREBASE
+
+        Recordemos que toda la informacion del usuario y de la autenticacion 
+        se guarda en los objetos user y auth. Firebase guardara por defecto
+        los objetos "user" y "auth" en Window.localStorage y se podran acceder 
+        directamente para comprobar si hay un usuario autenticado ya en la app 
+        en cualquier momento luego del registro inicial. Asi que podemos iniciar
+        comprobando si hay un objeto 'auth' y 'user' para este dominio y en
+        base a esto dirigir al usuario a las paginas de login o a las paginas
+        privadas.
+
+        "You can specify how the Authentication state persists when using the 
+        Firebase JS SDK. This includes the ability to specify whether a signed 
+        in user should be indefinitely persisted until explicit sign out, cleared 
+        when the window is closed or cleared on page reload."
+
+        "For a web application, the default behavior is to persist a user's session 
+        even after the user closes the browser. This is convenient as the user is 
+        not required to continuously sign-in every time the web page is visited 
+        on the same device." 
+        
+        asi que: "the state will be persisted even when the browser window is 
+        closed... An explicit sign out is needed to clear that state." 
+
+        (Si te estas preguntando como la app sabe que el objeto user es el de
+        tu app de firebase y no el de otra aplicacion recuerda que en localStorage 
+        cada objeto se asocia a un dominio.)
+
+        Leer la informacion en la siguiente pagina de Firebase para entender
+        todo:
+
+        https://firebase.google.com/docs/auth/web/auth-state-persistence
+
+      */ 
+
+      /* Handles the sign out button press */
+      function SignOut() {
+        if (firebase.auth().currentUser) {
+          firebase.auth().signOut();
+        } 
+        document.getElementById('sign-out').disabled = true;
+      }
+
+      function updateProfile() {
+
+        newDisplayName = document.getElementById("user-name").value;
+        newPhoneNumber = document.getElementById("phone-number").value;
+        newPassword = document.getElementById("new-password").value;
+
+        var user = firebase.auth().currentUser;
+
+        user.updateProfile({
+          /* photoURL: , TODO */
+          displayName: newDisplayName,
+          phoneNumber: newPhoneNumber,
+          password: newPassword,
+        }).then(function() {
+          // Update successful.
+          console.log('Successfully updated user');
+        }).catch(function(error) {
+          // An error happened.
+          console.log('Error updating user:', error);
+        });        
+      }  
+
+      /* initApp handles setting up UI event listeners and registering Firebase auth listeners */
+      function initApp() {
+        // firebase.auth().onAuthStateChanged: This listener is called when the 
+        // user is signed in or out, and that is where we update the UI. Nota
+        // que esta funcion es un event handler y como todo event handler su argumento 
+        // es una funcion callback cuyo codigo sera ejecutado cuando ocurre el evento 
+        // de cambio de estado de autenticacion.
+        firebase.auth().onAuthStateChanged(function(user) {
+          // si el usuario esta registrado...
+          if (user) {
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var phoneNumber = user.phoneNumber;
+            var photoURL = user.photoURL;
+            var isAnonymous = user.isAnonymous;
+            var uid = user.uid;
+            var providerData = user.providerData;
+            // Se actualiza el url de su imagen
+            document.getElementById("user-image").src = photoURL;
+            // Se llena el text input con el nombre del usuario
+            document.getElementById('user-name').placeholder = displayName;
+            // Se llena el text input con el numero de telefono del usuario
+            if (phoneNumber) {
+              document.getElementById('phone-number').placeholder = phoneNumber;
+            } else {
+              document.getElementById('phone-number').placeholder = "Enter your phone number";
+              document.getElementById('phone-number').style.fontStyle = "italic";
+              document.getElementById('phone-number').className = "update-profile-input-not-set";
+            }
+            // Se llena el text input con el password del usuario
+            document.getElementById('new-password').placeholder = "Enter the new password";
+            document.getElementById('new-password').style.fontStyle = "italic";
+            document.getElementById('new-password').className = "update-profile-input-not-set";
+          } else {
+            // En caso de que el usuario coloque directamente el URL de esta
+            // pagina "/private/index.html" queremos por razones de seguridad
+            // que no vea nada:
+            // Si el usuario se ha deslogueado redirigimos a la ruta inicial,
+            // replace() removes the URL of the current document from the 
+            // document history, meaning that it is not possible to use the 
+            // "back" button to navigate back to the original document.
+            window.location.replace("/index.html");
+          }
+        });
+        // [END authstatelistener]
+        document.getElementById('sign-out').addEventListener('click', SignOut, false);
+        document.getElementById('update-profile').addEventListener('click', updateProfile, false);
+      }
+
+      window.onload = function() {
+        initApp();
+      };
+    </script>
+  </head>
   
-  <link rel="stylesheet" href="../main.css">
-
-  <!-- Import and configure the Firebase SDK -->
-  <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
-  <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
-  <script src="/__/firebase/8.1.1/firebase-app.js"></script>
-  <script src="/__/firebase/8.1.1/firebase-auth.js"></script>
-  <script src="/__/firebase/init.js"></script>
-
-  <script type="text/javascript">
-
-    /*
-      How Firebase Authentication work:
-
-      To sign a user into your app, you first get authentication credentials from the 
-      user. These credentials can be the user's email address and password, or an OAuth 
-      token from a federated identity provider. Then, you pass these credentials to the 
-      Firebase Authentication SDK. Our backend services will then verify those credentials 
-      and return a response to the client.  
-
-      After a successful sign in, you can access the user's basic profile information, 
-      and you can control the user's access to data stored in other Firebase products. 
-      You can also use the provided authentication token to verify the identity of users 
-      in your own backend services.
-
-      Note: By default, authenticated users can read and write data to the Firebase Realtime 
-      Database and Cloud Storage. You can control the access of those users by modifying your 
-      Firebase Realtime Database and Cloud Storage Security Rules.
-    */
-
-    /* 
-      IMPORTANTE: PERSISTENCIA DEL USUARIO EN FIREBASE
-
-      Recordemos que toda la informacion del usuario y de la autenticacion 
-      se guarda en los objetos user y auth. Firebase guardara por defecto
-      los objetos "user" y "auth" en Window.localStorage y se podran acceder 
-      directamente para comprobar si hay un usuario autenticado ya en la app 
-      en cualquier momento luego del registro inicial. Asi que podemos iniciar
-      comprobando si hay un objeto 'auth' y 'user' para este dominio y en
-      base a esto dirigir al usuario a las paginas de login o a las paginas
-      privadas.
-
-      "You can specify how the Authentication state persists when using the 
-      Firebase JS SDK. This includes the ability to specify whether a signed 
-      in user should be indefinitely persisted until explicit sign out, cleared 
-      when the window is closed or cleared on page reload."
-
-      "For a web application, the default behavior is to persist a user's session 
-      even after the user closes the browser. This is convenient as the user is 
-      not required to continuously sign-in every time the web page is visited 
-      on the same device." 
-      
-      asi que: "the state will be persisted even when the browser window is 
-      closed... An explicit sign out is needed to clear that state." 
-
-      (Si te estas preguntando como la app sabe que el objeto user es el de
-      tu app de firebase y no el de otra aplicacion recuerda que en localStorage 
-      cada objeto se asocia a un dominio.)
-
-      Leer la informacion en la siguiente pagina de Firebase para entender
-      todo:
-
-      https://firebase.google.com/docs/auth/web/auth-state-persistence
-
-    */ 
-
-    /* Handles the sign out button press */
-    function SignOut() {
-      if (firebase.auth().currentUser) {
-        firebase.auth().signOut();
-      } 
-      document.getElementById('sign-out').disabled = true;
-    }
- 
-    /* initApp handles setting up UI event listeners and registering Firebase auth listeners */
-    function initApp() {
-      // firebase.auth().onAuthStateChanged: This listener is called when the 
-      // user is signed in or out, and that is where we update the UI. Nota
-      // que esta funcion es un event handler y como todo event handler su argumento 
-      // es una funcion callback cuyo codigo sera ejecutado cuando ocurre el evento 
-      // de cambio de estado de autenticacion.
-      firebase.auth().onAuthStateChanged(function(user) {
-        // si el usuario esta registrado...
-        if (user) {
-          var displayName = user.displayName;
-          var email = user.email;
-          var emailVerified = user.emailVerified;
-          var photoURL = user.photoURL;
-          var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
-          var providerData = user.providerData;
-          // Se llena el span con estado de la autenticacion
-          document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
-          // Se llena el pre con la informacion del usuario 
-          document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-        } else {
-          // Si el usuario se ha deslogueado redirigimos a la ruta inicial,
-          // replace() removes the URL of the current document from the 
-          // document history, meaning that it is not possible to use the 
-          // "back" button to navigate back to the original document.  
-          window.location.replace("/index.html");
-        }
-      });
-      // [END authstatelistener]
-      document.getElementById('sign-out').addEventListener('click', SignOut, false);
-    }
-
-    window.onload = function() {
-      initApp();
-    };
-  </script>
-</head>
-<body>
-
-  <!-- Header section containing title -->
-  <header>
-    <a href="/private/index.html"><h1><img src="../firebase-logo.png" alt="firebase-logo">Firebase Authentication</h1></a>
-  </header>
-
-  <main class="centered-content">
-
-    <button id="sign-out" name="signout">Sign out</button>
-    <br/><br/>
-
-    <div id="user-details" class="user-details">
-      Firebase sign-in status: 
-      <span id="quickstart-sign-in-status">Unknown</span>
+  <body>
+    <div class="centered-content">
+      <img 
+        id="user-image"
+        src="../assets/user-avatar.svg" 
+        alt="User picture" 
+        class="user-avatar-big"
+      >
+      <input 
+        class="update-profile-input"
+        style="display:inline;width:auto;background-color:white;font-size:14px;" 
+        type="text" 
+        id="user-name" 
+        placeholder=""
+      />
+      <span><i class="fas fa-pencil-alt"></i></span>
+      <input 
+        class="update-profile-input"
+        style="display:inline;width:auto;background-color:white;font-size:14px;" 
+        type="text" 
+        id="phone-number" 
+        placeholder=""
+      />
+      <span><i class="fas fa-pencil-alt"></i></span>
+      <p 
+        style="color:black;font-size:small;margin-top:15px;margin-bottom:15px;"
+      >
+        Change password
+      </p>
+      <input 
+        class="update-profile-input"
+        style="display:inline;width:auto;background-color:white;font-size:14px;" 
+        type="text" 
+        id="new-password" 
+        placeholder=""
+      />
+      <span><i class="fas fa-pencil-alt"></i></span>
       <br/><br/>
-      <div>Firebase auth <code>currentUser</code> object value:</div>
-      <pre><code id="quickstart-account-details">null</code></pre>
-    </div>
-    
-  </main>
+      <button id="update-profile" 
+        style="background-color:#ff1e00;padding:8px;margin-left:auto;margin-right:auto;color:white;"
+      >
+        Update profile
+      </button> 
+      <br/><br/>
+      <button id="sign-out" 
+              style="background-color:#ffe600;padding:8px;margin-left:auto;margin-right:auto;"
+      >
+        Sign out
+      </button>  
+    </div>  
 
-</body>
+  </body>
 </html>

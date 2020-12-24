@@ -69,14 +69,43 @@ input[type=email] {
   diferente para cada explorador
 */
 #search-input::-webkit-input-placeholder { /* Edge */
-  color: rgb(0, 0, 0);
+  color: black;
 }
 #search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: rgb(0, 0, 0);
+  color: black;
 }
 #search-input::placeholder {
+  color: black;
+}
+
+/* 
+  Color del texto placeholder de los text inputs del 
+  formulario de actualizacion de perfil del usuario
+  que no han sido fijados
+*/
+.update-profile-input-not-set::-webkit-input-placeholder { /* Edge */
+  color: grey;
+}
+.update-profile-input-not-set:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: grey;
+}
+.update-profile-input-not-set::placeholder {
+  color: grey;
+}
+
+/* 
+  Color del texto placeholder de los text inputs del formulario de actualizacion de perfil del usuario
+*/
+.update-profile-input::-webkit-input-placeholder { /* Edge */
   color: rgb(0, 0, 0);
 }
+.update-profile-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgb(0, 0, 0);
+}
+.update-profile-input::placeholder {
+  color: rgb(0, 0, 0);
+}
+
 
 .title {
   font-size: 2.5em;
@@ -86,8 +115,18 @@ input[type=email] {
 .user-avatar {
   width:40px;
   height:40px;
-  margin-top: 1px;
+  margin-top: 5px;
   border-radius: 50%;  
+}
+
+.user-avatar-big {
+  width:140px;
+  height:140px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  padding: 5px;
+  border: 3px solid black;
 }
 
 .pseudolink { 

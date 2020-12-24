@@ -1,1 +1,3 @@
+Permitirle al usuario subir una imagen de la camara o disco al pulsar el avatar.
+Comprobar acceso a rutas privadas
 Arreglar mensajes alert para cada caso.

@@ -1,0 +1,38 @@
+Firebase sign-in status: Signed in
+
+Firebase auth currentUser object value:
+{
+  "uid": "xeX2VqDDM9XdCU1em4vt0iUeXLw1",
+  "displayName": "Sirius Fuenmayor",
+  "photoURL": "https://lh3.googleusercontent.com/a-/AOh14Gj5b6hKRrGB86LppxaQwydJEF11TNUogDSyHpsaZA=s96-c",
+  "email": "fuenmayor.sirius@gmail.com",
+  "emailVerified": true,
+  "phoneNumber": null,
+  "isAnonymous": false,
+  "tenantId": null,
+  "providerData": [
+    {
+      "uid": "111529121637240808358",
+      "displayName": "Sirius Fuenmayor",
+      "photoURL": "https://lh3.googleusercontent.com/a-/AOh14Gj5b6hKRrGB86LppxaQwydJEF11TNUogDSyHpsaZA=s96-c",
+      "email": "fuenmayor.sirius@gmail.com",
+      "phoneNumber": null,
+      "providerId": "google.com"
+    }
+  ],
+  "apiKey": "AIzaSyBUHbFCyY23yqsF4f7xGzJ6f4bM-WGFPAg",
+  "appName": "[DEFAULT]",
+  "authDomain": "control-de-ordenes-vrgsa.firebaseapp.com",
+  "stsTokenManager": {
+    "apiKey": "AIzaSyBUHbFCyY23yqsF4f7xGzJ6f4bM-WGFPAg",
+    "refreshToken": "AG8BCne8VxAm_HoJ6p7zT1YOsqCqCY2bgV-mc6u7OS5waEOkYDcVPZif5Z__aUn0wZ55PvH9PFcaHPERpxAWOeWMw9bVbP4sbvIiBRhVD76La9LIBK5PDEZqUccGVA9yLIlt0GW-sukv5BweQvPM1uNd1AlotUFG9-pjQTPVCr5wYFAE-OA60nEXAMeJynqPNQ61OMh8gU3gciJgk-bHYY4hzpaEIlZqCMwbom8XyN5GdPsrp6MH255mF_-Oje45sMoRlrkBEAcQ173zxumuQRqmzuIDSx8fd-OhmRfFxyM3lXBLvOk4kvH4IbM_GI3-Dw5KjpNiqVh8lJ6Npy3gfCJV2h9Qdv2SasvohTENVidYTF15i7MgP84fB9FNAkx_E6MnTS1HmgU_8J4LMV7x4opd22GuF12FFS0p47kxe6yz-FyocG8LOG5SG89OAWpP9l3GkZkdaksBPSz3H0ViuRkGkPujSz-3dw",
+    "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNjYmM4ZjIyMDJmNjZkMWIxZTEwMTY1OTFhZTIxNTZiZTM5NWM2ZDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiU2lyaXVzIEZ1ZW5tYXlvciIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHajViNmhLUnJHQjg2THBweGFRd3lkSkVGMTFUTlVvZ0RTeUhwc2FaQT1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9jb250cm9sLWRlLW9yZGVuZXMtdnJnc2EiLCJhdWQiOiJjb250cm9sLWRlLW9yZGVuZXMtdnJnc2EiLCJhdXRoX3RpbWUiOjE2MDg3NDc0OTksInVzZXJfaWQiOiJ4ZVgyVnFERE05WGRDVTFlbTR2dDBpVWVYTHcxIiwic3ViIjoieGVYMlZxRERNOVhkQ1UxZW00dnQwaVVlWEx3MSIsImlhdCI6MTYwODgzNTE2NSwiZXhwIjoxNjA4ODM4NzY1LCJlbWFpbCI6ImZ1ZW5tYXlvci5zaXJpdXNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTE1MjkxMjE2MzcyNDA4MDgzNTgiXSwiZW1haWwiOlsiZnVlbm1heW9yLnNpcml1c0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.DjQr0nl3-nXxPhBzVC0i8O4xbTQlwTAV9Y6NBgKfzbhxGylujJ7CaMRusEbR8PnTBNCB_gWsmb8UZAll4JlmegyAMMdE8fJBBknynpcUFVt0UuRlGqfOM5xhjer0yI3nCdk1PLfhaEu4IhSuIwIqqnXn2aUxjtgeThTmvo6Hd2EE5z--D7wfYV50Q7uvCtHjpaP3WTw6NbXsbokJ-NDVjOZFOusK1q5YybwixVgyUhB-8VydAb7hqKIJNb8vS6XzoehWNhw9xZlzX9jtWlwRJwnAyKNTZ5v1ywsKi_0PBN5WNd-XN0uhSk9r35htEH9fEnRlnA2ENQvwztRTSldwEQ",
+    "expirationTime": 1608838765000
+  },
+  "redirectEventId": null,
+  "lastLoginAt": "1608747499815",
+  "createdAt": "1608476719439",
+  "multiFactor": {
+    "enrolledFactors": []
+  }
+}
