@@ -37,89 +37,17 @@ limitations under the License.
     <!-- Script principal de la aplicacion -->
     <script type="text/javascript">
 
-      /*
-        How Firebase Authentication work:
+      function createItem() {
 
-        To sign a user into your app, you first get authentication credentials from the 
-        user. These credentials can be the user's email address and password, or an OAuth 
-        token from a federated identity provider. Then, you pass these credentials to the 
-        Firebase Authentication SDK. Our backend services will then verify those credentials 
-        and return a response to the client.  
-
-        After a successful sign in, you can access the user's basic profile information, 
-        and you can control the user's access to data stored in other Firebase products. 
-        You can also use the provided authentication token to verify the identity of users 
-        in your own backend services.
-
-        Note: By default, authenticated users can read and write data to the Firebase Realtime 
-        Database and Cloud Storage. You can control the access of those users by modifying your 
-        Firebase Realtime Database and Cloud Storage Security Rules.
-      */
-
-      /* 
-        IMPORTANTE: PERSISTENCIA DEL USUARIO EN FIREBASE
-
-        Recordemos que toda la informacion del usuario y de la autenticacion 
-        se guarda en los objetos user y auth. Firebase guardara por defecto
-        los objetos "user" y "auth" en Window.localStorage y se podran acceder 
-        directamente para comprobar si hay un usuario autenticado ya en la app 
-        en cualquier momento luego del registro inicial. Asi que podemos iniciar
-        comprobando si hay un objeto 'auth' y 'user' para este dominio y en
-        base a esto dirigir al usuario a las paginas de login o a las paginas
-        privadas.
-
-        "You can specify how the Authentication state persists when using the 
-        Firebase JS SDK. This includes the ability to specify whether a signed 
-        in user should be indefinitely persisted until explicit sign out, cleared 
-        when the window is closed or cleared on page reload."
-
-        "For a web application, the default behavior is to persist a user's session 
-        even after the user closes the browser. This is convenient as the user is 
-        not required to continuously sign-in every time the web page is visited 
-        on the same device." 
-        
-        asi que: "the state will be persisted even when the browser window is 
-        closed... An explicit sign out is needed to clear that state." 
-
-        (Si te estas preguntando como la app sabe que el objeto user es el de
-        tu app de firebase y no el de otra aplicacion recuerda que en localStorage 
-        cada objeto se asocia a un dominio.)
-
-        Leer la informacion en la siguiente pagina de Firebase para entender
-        todo:
-
-        https://firebase.google.com/docs/auth/web/auth-state-persistence
-
-      */ 
-
-      /* Handles the sign out button press */
-      function SignOut() {
-        if (firebase.auth().currentUser) {
-          firebase.auth().signOut();
-        } 
-        document.getElementById('sign-out').disabled = true;
-      }
-
-      function updateProfile() {
-
+        // Obtenemos los valores almacenados en los campos y los
+        // guardamos en variables
         newDisplayName = document.getElementById("user-name").value;
         newPhoneNumber = document.getElementById("phone-number").value;
         newPassword = document.getElementById("new-password").value;
 
-        var user = firebase.auth().currentUser;
-
-        user.updateProfile({
-          /* photoURL: , TODO */
-          displayName: newDisplayName,
-          phoneNumber: newPhoneNumber,
-          password: newPassword,
-        }).then(function() {
-          // Update successful.
-          console.log('Successfully updated user');
-        }).catch(function(error) {
-          // An error happened.
-          console.log('Error updating user:', error);
-        });        
+        // Aca va la logica para subir los valores almacenados en 
+        // los campos a Firestore o localStorage
+        // TODO...
       }  
 
       /* initApp handles setting up UI event listeners and registering Firebase auth listeners */
@@ -168,8 +96,7 @@ limitations under the License.
           }
         });
         // [END authstatelistener]
-        document.getElementById('sign-out').addEventListener('click', SignOut, false);
-        document.getElementById('update-profile').addEventListener('click', updateProfile, false);
+        document.getElementById('update-profile').addEventListener('click', createItem, false);
       }
 
       window.onload = function() {
@@ -217,16 +144,10 @@ limitations under the License.
       <span><i class="fas fa-pencil-alt"></i></span>
       <br/><br/>
       <button id="update-profile" 
-        style="background-color:#ff1e00;padding:10px;margin-left:auto;margin-right:auto;color:white;"
+        style="background-color:#ff1e00;padding:8px;margin-left:auto;margin-right:auto;color:white;"
       >
-        Update profile
+        Create item
       </button> 
-      <br/><br/>
-      <button id="sign-out" 
-              style="background-color:#ffe600;padding:10px;margin-left:auto;margin-right:auto;"
-      >
-        Sign out
-      </button>  
     </div>  
 
   </body>

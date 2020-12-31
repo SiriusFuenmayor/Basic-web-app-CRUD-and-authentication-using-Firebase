@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private route</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="./create-item-form.css">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Font awesome icons -->
+    <script src="https://kit.fontawesome.com/3c26affd32.js" crossorigin="anonymous"></script>  
+    <!-- Import and configure the Firebase SDK -->
+    <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+    <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+    <script src="/__/firebase/8.1.1/firebase-app.js"></script>
+    <script src="/__/firebase/8.1.1/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <!-- Script principal de la aplicacion -->
+    <script type="text/javascript">
+
+      function createItem() {
+
+        // Obtenemos los valores almacenados en los campos y los
+        // guardamos en variables
+        newDisplayName = document.getElementById("user-name").value;
+        newPhoneNumber = document.getElementById("phone-number").value;
+        newPassword = document.getElementById("new-password").value;
+
+        // Aca va la logica para subir los valores almacenados en 
+        // los campos a Firestore o localStorage
+        // TODO...
+      }  
+
+      document.getElementById('phone-number').placeholder = "Enter your phone number";
+      document.getElementById('phone-number').style.fontStyle = "italic";
+
+      /* initApp handles setting up UI event listeners and registering Firebase auth listeners */
+      function initApp() {
+
+        document.getElementById('update-profile').addEventListener('click', createItem, false);
+      }
+
+      window.onload = function() {
+        initApp();
+      };
+    </script>
+  </head>
+  
+  <body>
+    <div class="container-create-item-form">
+
+      <!-- Item image -->
+      <div class="item-image">
+        <label 
+          for="item-image" 
+          style="display:block;font-size:small;margin-top:10px;margin-bottom:10px;"
+        >
+          Item image
+        </label>
+        <img 
+          name="item-image"
+          id="user-image"
+          src="../assets/image-placeholder.png" 
+          alt="Item image" 
+          accept="image/*"
+        >
+      </div>
+
+      <!-- Item atributes -->
+      <div class="item-atributes">
+        <label 
+          for="item-name" 
+          style="display:block;font-size:small;margin-top:10px;margin-bottom:10px;"
+        >
+          Item name
+        </label>
+        <input 
+          name="item-name"
+          style="display:inline;background-color:whitesmoke;font-size:14px;" 
+          type="text" 
+          id="user-name" 
+          placeholder=""
+        />        
+        
+        <label
+          for="item-price" 
+          style="display:block;font-size:small;margin-top:10px;margin-bottom:10px;"
+        >
+          Item price
+        </label>
+        <input 
+          name="item-price"
+          style="display:inline;background-color:whitesmoke;font-size:14px;" 
+          type="text" 
+          id="phone-number" 
+          placeholder=""
+        />
+      </div>
+
+      <!-- Item description -->
+      <div class="item-description">
+        <label
+          for="item-description"
+          style="display:block;font-size:small;margin-bottom:10px;"
+        >
+          Item description
+        </label>
+        <textarea name="item-description" cols="100" rows="7"></textarea>
+      </div>
+
+      <!-- Submit button -->
+      <div class="submit-button">
+        <button 
+          id="update-profile" 
+          style="background-color:#ff1e00;padding:10px;color:white;margin-bottom:30px;"
+        >
+          Create item
+        </button>
+      </div>
+
+    </div>  
+
+  </body>
+</html>

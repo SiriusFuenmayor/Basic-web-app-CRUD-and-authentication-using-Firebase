@@ -1,3 +1,4 @@
+Mover el layout y demas elementos del estilo de una pagina a un archivo CSS especifico de la pagina.
 Permitirle al usuario subir una imagen de la camara o disco al pulsar el avatar.
-Comprobar acceso a rutas privadas
+Comprobar acceso a rutas privadas poniendo la URL en la barra del explorador.
 Arreglar mensajes alert para cada caso.

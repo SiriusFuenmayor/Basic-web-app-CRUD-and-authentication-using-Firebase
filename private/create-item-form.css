@@ -1,0 +1,78 @@
+/**********************************************************
+* CSS grid que controla el layout del formulario de creacion
+* de item
+**********************************************************/
+
+/* 
+  Esta clase define al grid del contenedor principal  
+  Defines the element as a grid container and establishes 
+  a new grid formatting context for its contents.
+*/
+.container-create-item-form {
+  /* generates a block-level grid */
+  display: grid;
+  /*
+    Para centrar las casillas dentro del viewport
+  */
+  justify-content: center;
+  align-content: center;
+  /*
+    Para centrar los elementos dentro de cada casilla
+  */
+  justify-items: start;
+  align-items: start; 
+  /* 
+    Defines the columns and rows of the grid with a 
+    space-separated list of values. The values represent 
+    the track size, and the space between them represents 
+    the grid line. 
+  */
+  grid-template-columns: 370px 300px;
+  grid-template-rows: 400px 150px 50px;
+  column-gap: 10px;
+  row-gap: 15px;
+  /*
+    Grid-template-areas:
+
+    Defines a grid template by referencing the names of 
+    the grid areas which are specified with the grid-area 
+    property. Repeating the name of a grid area causes the 
+    content to span those cells. A period signifies an empty 
+    cell. The syntax itself provides a visualization of the 
+    structure of the grid.
+  */
+  grid-template-areas: 
+    "picture atributes"
+    "description description"
+    "button button";
+}
+  
+/* 
+Esta clase a cada item dentro del grid del formulario
+*/
+.page-header {
+  grid-area: header;
+}
+.item-picture {
+  grid-area: picture;
+}
+.item-atributes {
+  grid-area: atributes;
+  margin-top: 10px;
+}
+.item-description {
+  grid-area: description;
+}
+.button {
+  align-self: center;
+  grid-area: submit-button;
+}
+
+@media only screen and (max-width : 700px) {
+  /* 
+    Redefinir el Grid para viewports entre
+    0 y 700px...
+  */
+}
+
+

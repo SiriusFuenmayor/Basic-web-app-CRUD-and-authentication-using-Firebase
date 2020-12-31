@@ -9,6 +9,7 @@
 .centered-content {
   margin:auto;
   text-align:center;
+  vertical-align:middle; 
   width:300px;
 }
 
@@ -79,8 +80,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  background-color:rgb(255, 255, 255);
-  border: 1px solid salmon;
+  background-color:white;
   padding: 5px;
 }  
 
